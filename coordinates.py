@@ -13,6 +13,6 @@ def distance(lat1, lon1, lat2, lon2):
     return 12742 * asin(sqrt(a))
 
 
-def closest(data, v):
-    return min(data, key=lambda p: distance(v['lat'],
-                                            v['lon'], p['lat'], p['lon']))
+def closest(data, loc):
+    return min(data, key=lambda x: distance(loc['lat'],
+                                            loc['lon'], x['lat'], x['lon']))
