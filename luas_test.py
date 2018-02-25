@@ -15,8 +15,8 @@ stops = [{'stop_name': 'FOU', 'lat': 53.346421, 'lon': -6.273455},
          {'stop_name': 'RED', 'lat': 53.318460, 'lon': -6.373240}]
 
 
-v = {'lat': my_lat, 'lon': my_lon}
-closest_stop = co.closest(stops, v)
+loc = {'lat': my_lat, 'lon': my_lon}
+closest_stop = co.closest(stops, loc)
 print(closest_stop)
 
 
