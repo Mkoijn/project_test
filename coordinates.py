@@ -1,4 +1,19 @@
 from math import cos, asin, sqrt
+from geopy.geocoders import Nominatim
+
+
+def my_location(address):
+    '''
+    Takes address, returns latitude and longitude
+    '''
+    geolocator = Nominatim()
+    location = geolocator.geocode(address)
+    print('My current location: ' + location.address)
+    my_lat = location.latitude
+    my_lon = location.longitude
+    print(my_lat, my_lon)
+    loc = {'lat': my_lat, 'lon': my_lon}
+    return loc
 
 
 def distance(lat1, lon1, lat2, lon2):
@@ -13,6 +28,8 @@ def distance(lat1, lon1, lat2, lon2):
     return 12742 * asin(sqrt(a))
 
 
-def closest(data, loc):
-    return min(data, key=lambda x: distance(loc['lat'],
-                                            loc['lon'], x['lat'], x['lon']))
+def closest(data, v):
+    return min(data, key=lambda p: distance(v['lat'],
+                                            v['lon'],
+                                            p['position']['lat'],
+                                            p['position']['lng']))

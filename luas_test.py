@@ -1,25 +1,22 @@
 import luas.api
 from luas.api import LuasDirection
-from geopy.geocoders import Nominatim
 import coordinates as co
 
-geolocator = Nominatim()
-location = geolocator.geocode("19 Ebenezer Terrace")
-print(location.address)
-my_lat = location.latitude
-my_lon = location.longitude
-print(my_lat, my_lon)
+stops = [{'stop_name': 'FOU', 'position': {'lat': 53.346421,
+                                           'lng': -6.273455}},
+         {'stop_name': 'FAT', 'position': {'lat': 53.338248,
+                                           'lng': -6.294419}},
+         {'stop_name': 'RED', 'position': {'lat': 53.318460,
+                                           'lng': -6.373240}}]
 
-stops = [{'stop_name': 'FOU', 'lat': 53.346421, 'lon': -6.273455},
-         {'stop_name': 'FAT', 'lat': 53.338248, 'lon': -6.294419},
-         {'stop_name': 'RED', 'lat': 53.318460, 'lon': -6.373240}]
+my_address = 'Kevin Street, Dublin 8'
 
-
-loc = {'lat': my_lat, 'lon': my_lon}
-closest_stop = co.closest(stops, loc)
+my_location = co.my_location(my_address)
+closest_stop = co.closest(stops, my_location)
 print(closest_stop)
 
-
 lc = luas.api.LuasClient()
-print(lc.next_tram(closest_stop['stop_name'], LuasDirection.Inbound).due)
-print(lc.next_tram(closest_stop['stop_name'], LuasDirection.Outbound).due)
+print('Inbound due: ' + str(lc.next_tram(closest_stop['stop_name'],
+                                         LuasDirection.Inbound).due))
+print('Outbound due: ' + str(lc.next_tram(closest_stop['stop_name'],
+                                          LuasDirection.Outbound).due))
