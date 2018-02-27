@@ -1,1 +1,5 @@
 __pycache__/
+flask_api/
+luas_stops.txt
+luas-stops.geojson
+luas-stops/

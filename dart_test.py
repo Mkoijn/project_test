@@ -3,7 +3,8 @@ import urllib.request
 import coordinates as co
 
 request = urllib.request.urlopen(
-    'http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML_WithStationType?StationType=D')
+    'http://api.irishrail.ie/realtime/realtime.asmx/getAllStations'
+    'XML_WithStationType?StationType=D')
 
 xml = BeautifulSoup(request, 'xml')
 
