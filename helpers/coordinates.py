@@ -11,7 +11,6 @@ def my_location(address):
     print('My current location: ' + location.address)
     my_lat = location.latitude
     my_lon = location.longitude
-    print(my_lat, my_lon)
     loc = {'lat': my_lat, 'lon': my_lon}
     return loc
 
@@ -31,5 +30,5 @@ def distance(lat1, lon1, lat2, lon2):
 def closest(data, v):
     return min(data, key=lambda p: distance(v['lat'],
                                             v['lon'],
-                                            p['position']['lat'],
-                                            p['position']['lng']))
+                                            p['lat'],
+                                            p['lng']))
