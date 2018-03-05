@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
-import coordinates as co
+import helpers.coordinates as co
 
 request = urllib.request.urlopen(
     'http://api.irishrail.ie/realtime/realtime.asmx/getAllStations'
@@ -22,13 +22,11 @@ for thing in my_xml_stations:
 list_dict_stations = []
 for yoke in stations:
     d1 = {}
-    d2 = {}
     d1['station_name'] = yoke[1]
-    d2['lat'] = float(yoke[3])
-    d2['lng'] = float(yoke[4])
-    d1['position'] = d2
+    d1['lat'] = float(yoke[3])
+    d1['lng'] = float(yoke[4])
     list_dict_stations.append(d1)
-# print(l1)
+# print(list_dict_stations)
 
 my_address = "Belfast"
 
